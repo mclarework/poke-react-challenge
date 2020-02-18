@@ -5,12 +5,18 @@ const AutoSuggest = props => {
   return (
     <div>
       <input onChange={props.handleChange} value={props.userValue} />
-      <button>Search for Pokemon data</button>
+      <button
+        onClick={() => {
+          props.handleButtonClick(props.data);
+        }}
+      >
+        Search for Pokemon data
+      </button>
       <div className="drop-down">
         {props.data ? (
           props.data.map((pokemon, index) => {
             return (
-              <h1 key={index} onClick={() => props.handleInputClick(pokemon.name)}>
+              <h1 key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
                 {pokemon.name}
               </h1>
             );
