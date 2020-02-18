@@ -1,0 +1,5 @@
+.drop-down {
+  height: 400px;
+  overflow: scroll;
+  border: 1px solid lightgrey;
+}

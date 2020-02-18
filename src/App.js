@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import AutoSuggest from "./components/AutoSuggest";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    pokemon: null,
+    userValue: ""
+  };
+
+  async componentDidMount() {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const data = await response.json();
+    console.log(data.results);
+    this.setState({ pokemon: data.results });
+  }
+
+  handleChange = event => {
+    this.setState({ userValue: event.target.value });
+  };
+
+  handleInputClick = selected => {
+    console.log(selected);
+    this.setState({ userValue: selected });
+  };
+  render() {
+    const { pokemon, userValue } = this.state;
+    return (
+      <div>
+        <AutoSuggest
+          data={pokemon}
+          userValue={userValue}
+          handleChange={this.handleChange}
+          handleInputClick={this.handleInputClick}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
