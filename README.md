@@ -6,4 +6,4 @@ Students will need to fork this repo and clone it to their machine.
 
 Starting state:
 
-![Starting State](/gfont-start.png)
+![Starting State](/poke-react-challenge.png)
