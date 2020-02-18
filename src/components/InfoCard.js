@@ -2,7 +2,7 @@ import React from "react";
 import "../infoCard.css";
 
 const InfoCard = props => {
-  console.log(props.pokemonData);
+  // console.log(props.pokemonData); <--- uncomment this if you want to see what data you get passed to the props
   return (
     <div className="card">
       <img src={props.pokemonData.sprites.front_default} />
