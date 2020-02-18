@@ -16,9 +16,9 @@ const AutoSuggest = props => {
         {props.data ? (
           props.data.map((pokemon, index) => {
             return (
-              <h1 key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
+              <h3 key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
                 {pokemon.name}
-              </h1>
+              </h3>
             );
           })
         ) : (
