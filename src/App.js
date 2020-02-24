@@ -18,7 +18,11 @@ class App extends Component {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
     const data = await response.json();
     const alphabetical = sortBy(data.results,"name")
-    //console.log(array) <--- uncomment this to see what data you get from this fetch request
+    this.setState({ allPokemon: alphabetical });
+    console.log(data.results)
+    let alphabetical = await data.results.map(pokeObj => {
+      return { name: pokeObj.name.charAt(0).toUpperCase() + pokeObj.name.slice(1), url: pokeObj.url}
+    })
     this.setState({ allPokemon: alphabetical });
   }
 
@@ -33,7 +37,7 @@ class App extends Component {
   handleButtonClick = async data => {
     const response = await fetch(data[this.state.selectedIndex].url);
     const info = await response.json();
-    // console.log(info) <----- uncomment this to see what data you get from this fetch request
+    // console.log(info)
     let pokeArray = this.state.pokemonSelected;
     pokeArray.push(info);
     this.setState({ pokemonSelected: pokeArray });
@@ -53,7 +57,7 @@ class App extends Component {
           {pokemonSelected.map(pokemon => {
             return (
               <div>
-                <InfoCard pokemonData={pokemon} />
+                <InfoCard pokemonData={pokemon} pokemonName={allPokemon} />
               </div>
             );
           })}

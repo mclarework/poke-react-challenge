@@ -2,11 +2,12 @@ import React from "react";
 import "../infoCard.css";
 
 const InfoCard = props => {
-  // console.log(props.pokemonData); <--- uncomment this if you want to see what data you get passed to the props
+  console.log(props.pokemonData);
+  let arr = props.pokemonData.name.charAt(0).toUpperCase() + props.pokemonData.name.slice(1)
   return (
     <div className="card">
-      <img src={props.pokemonData.sprites.front_default} />
-      <h3>Name: {props.pokemonData.name}</h3>
+      <img src={props.pokemonData.sprites.front_default} alt="pokemon character"/>
+      <h3>Name: {arr}</h3>
       <h3>Height: {props.pokemonData.height}</h3>
       <h3>Abiltities</h3>
       {props.pokemonData.abilities.map((ability, index) => {
