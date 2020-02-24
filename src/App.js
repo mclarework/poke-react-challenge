@@ -20,10 +20,10 @@ class App extends Component {
     const alphabetical = sortBy(data.results,"name")
     this.setState({ allPokemon: alphabetical });
     console.log(data.results)
-    let alphabetical = await data.results.map(pokeObj => {
+    let arr = await alphabetical.map(pokeObj => {
       return { name: pokeObj.name.charAt(0).toUpperCase() + pokeObj.name.slice(1), url: pokeObj.url}
     })
-    this.setState({ allPokemon: alphabetical });
+    this.setState({ allPokemon: arr });
   }
 
   handleChange = event => {
