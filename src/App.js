@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import AutoSuggest from "./components/AutoSuggest";
 import InfoCard from "./components/InfoCard";
+import sortBy from "lodash/sortBy"
 
 class App extends Component {
   state = {
@@ -16,8 +17,9 @@ class App extends Component {
   async componentDidMount() {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
     const data = await response.json();
-    // console.log(data.results) <--- uncomment this to see what data you get from this fetch request
-    this.setState({ allPokemon: data.results });
+    const alphabetical = sortBy(data.results,"name")
+    //console.log(array) <--- uncomment this to see what data you get from this fetch request
+    this.setState({ allPokemon: alphabetical });
   }
 
   handleChange = event => {
