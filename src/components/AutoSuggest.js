@@ -5,18 +5,20 @@ import DropDown from "./DropDown";
 const AutoSuggest = props => {
   return (
     <div>
-      <input onChange={props.handleChange} value={props.userValue} />
-      <button
-        onClick={() => {
-          props.handleButtonClick(props.data);
-        }}
-      >
-        Search for Pokemon data
-      </button>
-      {props.suggested.length > 0 || props.selected.length > 0 ? (
+      <div className="ui">
+        <input onChange={props.handleChange} value={props.userValue} placeholder="Search for Pokémon Data"/>
+        <button
+          onClick={() => {
+            props.handleButtonClick(props.data);
+          }}
+        >
+          Search for Pokemon data
+        </button>
+      </div>
+      {props.suggested.length > 0 ? (
       <DropDown suggested={props.suggested} handleInputClick={props.handleInputClick} selected={props.selected}/>
       ):(
-       null
+        null
         )}
     </div>
   );
