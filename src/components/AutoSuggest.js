@@ -13,8 +13,8 @@ const AutoSuggest = props => {
         Search for Pokemon data
       </button>
       <div className="drop-down">
-        {props.data ? (
-          props.data.map((pokemon, index) => {
+        {props.suggested ? (
+          props.suggested.map((pokemon, index) => {
             return (
               <h3 key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
                 {pokemon.name}
