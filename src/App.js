@@ -53,7 +53,7 @@ class App extends Component {
   handleButtonClick = async data => {
     const response = await fetch(data[this.state.selectedIndex].url);
     const info = await response.json();
-    // console.log(info)
+    console.log(info)
     let pokeArray = this.state.pokemonSelected;
     if(this.state.pokemonSelected.length < 4){
       pokeArray.push(info);
