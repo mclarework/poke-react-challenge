@@ -1,5 +1,6 @@
 import React from "react";
 import "../autoSuggest.css";
+import DropDown from "./DropDown";
 
 const AutoSuggest = props => {
   return (
@@ -12,19 +13,11 @@ const AutoSuggest = props => {
       >
         Search for Pokemon data
       </button>
-      <div className="drop-down">
-        {props.suggested ? (
-          props.suggested.map((pokemon, index) => {
-            return (
-              <h3 key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
-                {pokemon.name}
-              </h3>
-            );
-          })
-        ) : (
-          <h1>Loading...</h1>
+      {props.suggested.length > 0 || props.selected.length > 0 ? (
+      <DropDown suggested={props.suggested} handleInputClick={props.handleInputClick} selected={props.selected}/>
+      ):(
+       null
         )}
-      </div>
     </div>
   );
 };

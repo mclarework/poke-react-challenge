@@ -50,24 +50,29 @@ class App extends Component {
     this.setState({pokemonSelected: storedChar})
   }
 
-  handleButtonClick = async data => {
-    const response = await fetch(data[this.state.selectedIndex].url);
-    const info = await response.json();
-    console.log(info)
-    let pokeArray = this.state.pokemonSelected;
-    if(this.state.pokemonSelected.length < 4){
-      pokeArray.push(info);
+  handleButtonClick = async() => {
+    const test = this.state.allPokemon.map((pokemon)=>{
+      return pokemon.name})
+      if (test.includes(this.state.userValue)) {
+      const response = await fetch(this.state.suggested[this.state.selectedIndex].url);
+      const info = await response.json();
+      let pokeArray = this.state.pokemonSelected;
+      if(this.state.pokemonSelected.length < 4){
+        pokeArray.push(info);
+      }
+      this.setState({ pokemonSelected: pokeArray, userValue:"", suggested:[] });
     }
-    this.setState({ pokemonSelected: pokeArray });
   };
+
   render() {
-    const { allPokemon, userValue, pokemonSelected, suggested } = this.state;
+    const { allPokemon, userValue, pokemonSelected, suggested, selected } = this.state;
     return (
       <div>
         <AutoSuggest
           data={allPokemon}
           userValue={userValue}
           suggested={suggested}
+          selected={pokemonSelected}
           handleChange={this.handleChange}
           handleInputClick={this.handleInputClick}
           handleButtonClick={this.handleButtonClick}
