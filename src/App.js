@@ -50,21 +50,18 @@ class App extends Component {
     this.setState({pokemonSelected: storedChar})
   }
 
-  handleButtonClick = async data => {
+  handleButtonClick = async() => {
     const test = this.state.allPokemon.map((pokemon)=>{
-      return pokemon.name
-    })
+      return pokemon.name})
       if (test.includes(this.state.userValue)) {
       const response = await fetch(this.state.suggested[this.state.selectedIndex].url);
       const info = await response.json();
-      console.log(test)
       let pokeArray = this.state.pokemonSelected;
-      pokeArray.push(info);
+      if(this.state.pokemonSelected.length < 4){
+        pokeArray.push(info);
+      }
       this.setState({ pokemonSelected: pokeArray, userValue:"", suggested:[] });
-    }else{
-      return
     }
-
   };
 
   render() {
