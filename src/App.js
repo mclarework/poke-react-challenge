@@ -9,7 +9,8 @@ class App extends Component {
     allPokemon: null,
     userValue: "",
     selectedIndex: null,
-    pokemonSelected: []
+    pokemonSelected: [],
+    suggested: []
   };
 
   //this is a React lifecycle method (part of react)
@@ -19,15 +20,24 @@ class App extends Component {
     const data = await response.json();
     const alphabetical = sortBy(data.results,"name")
     this.setState({ allPokemon: alphabetical });
-    console.log(data.results)
     let arr = await alphabetical.map(pokeObj => {
       return { name: pokeObj.name.charAt(0).toUpperCase() + pokeObj.name.slice(1), url: pokeObj.url}
     })
-    this.setState({ allPokemon: arr });
+    this.setState({ allPokemon: arr});
   }
 
   handleChange = event => {
-    this.setState({ userValue: event.target.value });
+    const all = this.state.allPokemon
+    const input = event.target.value
+    let filter = null
+    if (event.target.value.length > 0){
+      filter = all.filter( pokemon =>{
+        return pokemon.name.toLowerCase().slice(0, input.length).indexOf(input.toLowerCase()) > -1
+      })
+      this.setState({ userValue: event.target.value, suggested:filter});
+    }else{
+      this.setState({ userValue: event.target.value, suggested:[]})
+    }
   };
 
   handleInputClick = async (selectedName, index) => {
@@ -43,12 +53,13 @@ class App extends Component {
     this.setState({ pokemonSelected: pokeArray });
   };
   render() {
-    const { allPokemon, userValue, pokemonSelected } = this.state;
+    const { allPokemon, userValue, pokemonSelected, suggested } = this.state;
     return (
       <div>
         <AutoSuggest
           data={allPokemon}
           userValue={userValue}
+          suggested={suggested}
           handleChange={this.handleChange}
           handleInputClick={this.handleInputClick}
           handleButtonClick={this.handleButtonClick}
