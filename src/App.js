@@ -55,7 +55,7 @@ class App extends Component {
       return pokemon.name
     })
       if (test.includes(this.state.userValue)) {
-      const response = await fetch(data[this.state.selectedIndex].url);
+      const response = await fetch(this.state.suggested[this.state.selectedIndex].url);
       const info = await response.json();
       console.log(test)
       let pokeArray = this.state.pokemonSelected;
