@@ -44,12 +44,20 @@ class App extends Component {
     this.setState({ userValue: selectedName, selectedIndex: index });
   };
 
+  remove = (index) => {
+    let storedChar = this.state.pokemonSelected;
+    storedChar.splice(index, 1)
+    this.setState({pokemonSelected: storedChar})
+  }
+
   handleButtonClick = async data => {
     const response = await fetch(data[this.state.selectedIndex].url);
     const info = await response.json();
     // console.log(info)
     let pokeArray = this.state.pokemonSelected;
-    pokeArray.push(info);
+    if(this.state.pokemonSelected.length < 4){
+      pokeArray.push(info);
+    }
     this.setState({ pokemonSelected: pokeArray });
   };
   render() {
@@ -65,10 +73,10 @@ class App extends Component {
           handleButtonClick={this.handleButtonClick}
         />
         <div className="card-container">
-          {pokemonSelected.map(pokemon => {
+          {pokemonSelected.map((pokemon, index) => {
             return (
               <div>
-                <InfoCard pokemonData={pokemon} pokemonName={allPokemon} />
+                <InfoCard click={() => this.remove(index)} key={index} pokemonData={pokemon} pokemonName={allPokemon} />
               </div>
             );
           })}
