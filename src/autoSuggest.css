@@ -1,5 +1,4 @@
 .drop-down {
-  height: 400px;
+  height: fit-content;
   overflow: auto;
-  border: 1px solid lightgrey;
 }
