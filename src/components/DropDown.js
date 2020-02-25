@@ -7,7 +7,7 @@ const DropDown = (props) => {
         {props.suggested ? (
           props.suggested.map((pokemon, index) => {
             return (
-              <h3 className="pokeList" key={index} onClick={() => props.handleInputClick(pokemon.name, index)}>
+              <h3 className="pokeList" key={index} onClick={() => props.handleInputClick(index)}>
                 {pokemon.name}
               </h3>
             );

@@ -7,13 +7,6 @@ const AutoSuggest = props => {
     <div>
       <div className="ui">
         <input onChange={props.handleChange} value={props.userValue} placeholder="Search for Pokémon Data"/>
-        <button
-          onClick={() => {
-            props.handleButtonClick(props.data);
-          }}
-        >
-          Search for Pokemon data
-        </button>
       </div>
       {props.suggested.length > 0 ? (
       <DropDown suggested={props.suggested} handleInputClick={props.handleInputClick} selected={props.selected}/>

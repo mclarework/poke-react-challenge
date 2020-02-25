@@ -41,8 +41,14 @@ class App extends Component {
     }
   };
 
-  handleInputClick = async (selectedName, index) => {
-    this.setState({ userValue: selectedName, selectedIndex: index });
+  handleInputClick = async (index) => {
+    const response = await fetch(this.state.suggested[index].url)
+    const info = await response.json()
+    let pokeArray = this.state.pokemonSelected;
+    if (this.state.pokemonSelected.length < 4) {
+      pokeArray.push(info);
+    }
+    this.setState({ userValue:"", selectedIndex: index, suggested:[]});
   };
 
   remove = (index) => {
@@ -50,20 +56,6 @@ class App extends Component {
     storedChar.splice(index, 1)
     this.setState({pokemonSelected: storedChar})
   }
-
-  handleButtonClick = async() => {
-    const test = this.state.allPokemon.map((pokemon)=>{
-      return pokemon.name})
-      if (test.includes(this.state.userValue)) {
-      const response = await fetch(this.state.suggested[this.state.selectedIndex].url);
-      const info = await response.json();
-      let pokeArray = this.state.pokemonSelected;
-      if(this.state.pokemonSelected.length < 4){
-        pokeArray.push(info);
-      }
-      this.setState({ pokemonSelected: pokeArray, userValue:"", suggested:[] });
-    }
-  };
 
   render() {
     const { allPokemon, userValue, pokemonSelected, suggested} = this.state;
@@ -77,7 +69,7 @@ class App extends Component {
           selected={pokemonSelected}
           handleChange={this.handleChange}
           handleInputClick={this.handleInputClick}
-          handleButtonClick={this.handleButtonClick}
+          click={this.nameClicker}
         />
         <div className="card-container">
           {pokemonSelected.map((pokemon, index) => {
