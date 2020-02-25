@@ -51,15 +51,22 @@ class App extends Component {
   }
 
   handleButtonClick = async data => {
-    const response = await fetch(data[this.state.selectedIndex].url);
-    const info = await response.json();
-    // console.log(info)
-    let pokeArray = this.state.pokemonSelected;
-    if(this.state.pokemonSelected.length < 4){
+    const test = this.state.allPokemon.map((pokemon)=>{
+      return pokemon.name
+    })
+      if (test.includes(this.state.userValue)) {
+      const response = await fetch(data[this.state.selectedIndex].url);
+      const info = await response.json();
+      console.log(test)
+      let pokeArray = this.state.pokemonSelected;
       pokeArray.push(info);
+      this.setState({ pokemonSelected: pokeArray });
+    }else{
+      return
     }
-    this.setState({ pokemonSelected: pokeArray });
+
   };
+
   render() {
     const { allPokemon, userValue, pokemonSelected, suggested } = this.state;
     return (
