@@ -2,8 +2,7 @@
   width: 200px;
   border: 8px solid #3B5CA7;
   background-color: #FFCB08;
-  box-shadow: 8px 8px 5px #18447E;
-  box-shadow: inset 7px 7px 1px #C89F0A;
+  box-shadow: 8px 8px 5px 0px #18447E, inset 7px 7px 1px 0px #C89F0A;
   display: flex;
   flex-direction: column;
   justify-content: center;
