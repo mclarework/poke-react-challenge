@@ -60,7 +60,7 @@ class App extends Component {
       console.log(test)
       let pokeArray = this.state.pokemonSelected;
       pokeArray.push(info);
-      this.setState({ pokemonSelected: pokeArray });
+      this.setState({ pokemonSelected: pokeArray, userValue:"", suggested:[] });
     }else{
       return
     }
@@ -68,13 +68,14 @@ class App extends Component {
   };
 
   render() {
-    const { allPokemon, userValue, pokemonSelected, suggested } = this.state;
+    const { allPokemon, userValue, pokemonSelected, suggested, selected } = this.state;
     return (
       <div>
         <AutoSuggest
           data={allPokemon}
           userValue={userValue}
           suggested={suggested}
+          selected={pokemonSelected}
           handleChange={this.handleChange}
           handleInputClick={this.handleInputClick}
           handleButtonClick={this.handleButtonClick}
