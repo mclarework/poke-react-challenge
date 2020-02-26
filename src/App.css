@@ -1,4 +1,16 @@
 .card-container {
   display: flex;
+  justify-content: space-around;
   width: 100%;
+}
+.logo{
+  height: auto;
+  width: 400px;
+  margin: 10px;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

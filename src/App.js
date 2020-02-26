@@ -3,6 +3,7 @@ import "./App.css";
 import AutoSuggest from "./components/AutoSuggest";
 import InfoCard from "./components/InfoCard";
 import sortBy from "lodash/sortBy"
+import poke from "./images/pokemon.png"
 
 class App extends Component {
   state = {
@@ -57,9 +58,10 @@ class App extends Component {
   }
 
   render() {
-    const { allPokemon, userValue, pokemonSelected, suggested } = this.state;
+    const { allPokemon, userValue, pokemonSelected, suggested} = this.state;
     return (
-      <div>
+      <div className="main">
+        <img className="logo" src={poke} alt="poke logo"></img>
         <AutoSuggest
           data={allPokemon}
           userValue={userValue}

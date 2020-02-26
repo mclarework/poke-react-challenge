@@ -13,11 +13,11 @@ const InfoCard = props => {
       <div className="info">
         <h3>Name: <span>{arr}</span></h3>
         <h3>Height: <span>{props.pokemonData.height}</span></h3>
-        <h3>Abiltities</h3>
+        <h3 className="subTitle">Abiltities</h3>
         {props.pokemonData.abilities.map((ability, index) => {
           return <p key={index}>{ability.ability.name}</p>;
         })}
-        <h3>Stats: </h3>
+        <h3 className="subTitle">Stats: </h3>
         {props.pokemonData.stats.map((currentStat, index) => {
           return (
             <p key={index}>
