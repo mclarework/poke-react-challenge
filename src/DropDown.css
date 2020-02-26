@@ -9,11 +9,19 @@
     z-index: 2;
 }
 
-.pokeList{
+.active{
+  font-family: arial;
+  font-size: 18px;
+  color: black;
+  font-weight: 400;
+  padding: 0px 0px 0px 20px;
+  background-color: antiquewhite;
+}
+
+.inactive{
   font-family: arial;
   font-size: 18px;
   color: black;
   font-weight: 400;
   padding: 0px 0px 0px 20px;
 }
-  

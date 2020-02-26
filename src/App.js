@@ -11,7 +11,8 @@ class App extends Component {
     userValue: "",
     selectedIndex: null,
     pokemonSelected: [],
-    suggested: []
+    suggested:[],
+    index: -1
   };
 
   //this is a React lifecycle method (part of react)
@@ -35,6 +36,9 @@ class App extends Component {
       filter = all.filter( pokemon =>{
         return pokemon.name.toLowerCase().slice(0, input.length).indexOf(input.toLowerCase()) > -1
       })
+      filter.map((value)=> {
+        return value.active = "inactive"
+      })
       this.setState({ userValue: event.target.value, suggested:filter});
     }else{
       this.setState({ userValue: event.target.value, suggested:[]})
@@ -50,6 +54,45 @@ class App extends Component {
     }
     this.setState({ userValue:"", selectedIndex: index, suggested:[]});
   };
+
+  handleKeyPress = async (event) => {
+    let suggested = this.state.suggested
+    let value = event.keyCode
+    let index = this.state.index
+    switch (true) {
+      case value === 38:
+        index--
+        break
+      case value === 40:
+        index++
+        break
+      case value === 13:
+        const response = await fetch(this.state.suggested[index].url)
+        const info = await response.json()
+        let pokeArray = this.state.pokemonSelected;
+        if (this.state.pokemonSelected.length < 4) {
+          pokeArray.push(info);
+        }
+        suggested = []
+        this.setState({userValue:""})
+        break
+      default:
+        console.log("other input detected")
+    }
+    if (index > suggested.length-1) {
+      index = suggested.length-1
+    }else if (index < 0) {
+      index = 0
+    }
+    if (index >= 0 && suggested.length > 0) {
+      suggested.map((value)=> {
+        return value.active = "inactive"
+      })
+      suggested[index].active = "active"
+    }
+    console.log(index)
+    this.setState({suggested:suggested, index: index})
+  }
 
   remove = (index) => {
     let storedChar = this.state.pokemonSelected;
@@ -70,6 +113,7 @@ class App extends Component {
           handleChange={this.handleChange}
           handleInputClick={this.handleInputClick}
           click={this.nameClicker}
+          press={this.handleKeyPress}
         />
         <div className="card-container">
           {pokemonSelected.map((pokemon, index) => {
