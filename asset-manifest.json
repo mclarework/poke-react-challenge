@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/poke-react-challenge/static/css/main.64c2db68.chunk.css",
+    "main.js": "/poke-react-challenge/static/js/main.6396bfc9.chunk.js",
+    "main.js.map": "/poke-react-challenge/static/js/main.6396bfc9.chunk.js.map",
+    "runtime-main.js": "/poke-react-challenge/static/js/runtime-main.0e3f5f73.js",
+    "runtime-main.js.map": "/poke-react-challenge/static/js/runtime-main.0e3f5f73.js.map",
+    "static/js/2.387cb5f6.chunk.js": "/poke-react-challenge/static/js/2.387cb5f6.chunk.js",
+    "static/js/2.387cb5f6.chunk.js.map": "/poke-react-challenge/static/js/2.387cb5f6.chunk.js.map",
+    "index.html": "/poke-react-challenge/index.html",
+    "precache-manifest.48c868768ff0680b0695c3175c75ca0b.js": "/poke-react-challenge/precache-manifest.48c868768ff0680b0695c3175c75ca0b.js",
+    "service-worker.js": "/poke-react-challenge/service-worker.js",
+    "static/css/main.64c2db68.chunk.css.map": "/poke-react-challenge/static/css/main.64c2db68.chunk.css.map",
+    "static/js/2.387cb5f6.chunk.js.LICENSE.txt": "/poke-react-challenge/static/js/2.387cb5f6.chunk.js.LICENSE.txt",
+    "static/media/pokemon.png": "/poke-react-challenge/static/media/pokemon.49255cb2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e3f5f73.js",
+    "static/js/2.387cb5f6.chunk.js",
+    "static/css/main.64c2db68.chunk.css",
+    "static/js/main.6396bfc9.chunk.js"
+  ]
+}
